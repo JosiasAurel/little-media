@@ -24,4 +24,13 @@ async def _handle_view_post(req: Request):
     post = body.get("post")
     time_spent = body.get("time")
     result = view_post(user, post, time_spent)
-    return {msg": result}
+    return {"msg": result}
+
+
+@app.post("/like-post")
+async def _handle_like_post(req: Request):
+    body = await req.json()
+    user = body.get("user")
+    post = body.get("post")
+    result = like_post(user, post)
+    return {"msg": result}
