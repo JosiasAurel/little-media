@@ -30,3 +30,12 @@ def view_post(user_id: str, post_id: str, time_spent: int):
         return "Success"
     except:
         return "Failed"
+
+
+def like_post(user_id: str, post_id: str):
+    try:
+        posts.update({"likes": posts.util.increment(1)}, post_id)
+        users.update({posts: users.util.append({"liked": True})}, user_id)
+        return "Success"
+    except:
+        return "Failed"
