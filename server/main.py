@@ -14,4 +14,14 @@ async def handler_make_user(req: Request):
     body = await req.json()
     user_name = body.get("name", "anonymous")
     result = create_user(user_name)
-    return result
+    return {"msg": result}
+
+
+@app.post("/view-post")
+async def _handle_view_post(req: Request):
+    body = await req.json()
+    user = body.get("user")
+    post = body.get("post")
+    time_spent = body.get("time")
+    result = view_post(user, post, time_spent)
+    return {msg": result}
