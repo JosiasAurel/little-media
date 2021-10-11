@@ -1,7 +1,18 @@
 from lib import create_user, view_post, like_post
 from fastapi import Request, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+# add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
